@@ -32,13 +32,12 @@ int battery_percentage(int *displayed) {
     exit(EXT_READING_ERROR);
   }
   long percentage = strtol(Buffer, NULL, 10);
-  if (*displayed == 0 && percentage <= 98) {
+  if (*displayed == 0 && percentage <= 15) {
     send_notifications(2);
     (*displayed)++;
-    printf("%d\n", *displayed);
   }
-  if (*displayed == 1 && percentage > 98)
-    (*displayed) == 0;
+  if (*displayed == 1 && percentage > 15)
+    (*displayed)--;
   fclose(fp);
   free(Buffer);
   return 0;
